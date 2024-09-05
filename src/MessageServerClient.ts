@@ -1,4 +1,6 @@
-import { type ReadableStream, decodeChunkStream } from "./ChunkStream";
+import axios from 'axios';
+import { AbortController } from "node-abort-controller";
+import { decodeChunkStream } from "./ChunkStream";
 import type {
 	BackwardSegment,
 	ChunkedEntry_ReadyForNext,
@@ -8,23 +10,27 @@ import * as proto from "./proto";
 
 export class MessageServerClient {
 	private nextStreamAt: bigint | "now" = "now";
-	private abortController: AbortController | null = null;
+	private abortController: AbortController = new AbortController();
 
 	constructor(private readonly messageServerUrl: string) {}
 
-	public connect() {
+	public async connect() {
+		console.log("[MessageServerClient] connect");
 		this.disconnect();
+		this.abortController = new AbortController();
 		this.fetchChunkedEntryStreamByPolling();
 	}
 
-	public disconnect() {
-		this.abortController?.abort();
-		this.abortController = null;
+	public async disconnect() {
+		console.log(`[MessageServerClient] disconnect`);
+		this.abortController.abort();
 	}
+
 
 	public onChunkedMessage = (message: proto.ChunkedMessage) => {};
 
 	private getOrCreateAbortController() {
+	
 		if (this.abortController === null) {
 			this.abortController = new AbortController();
 		}
@@ -32,45 +38,50 @@ export class MessageServerClient {
 	}
 
 	private async fetchChunkedEntryStreamByPolling() {
-		while (!this.abortController?.signal?.aborted) {
+		console.log("[fetchChunkedEntryStreamByPolling] start");
+		while (!this.abortController.signal.aborted) {
 			try {
 				const abortController = this.getOrCreateAbortController();
 
-				const response = await fetch(
-					`${this.messageServerUrl}?at=${this.nextStreamAt}`,
+				const url = `${this.messageServerUrl}?at=${this.nextStreamAt}`;
+				console.log(`[fetchChunkedEntryStreamByPolling] ${url}`);
+				const response = (await axios.get(url,
 					{
 						signal: abortController.signal,
 						headers: {
 							Priority: "u=1, i",
 						},
+						responseType: 'stream',
 					},
-				);
+				));
 
-				for await (const chunk of decodeChunkStream(
-					proto.ChunkedEntrySchema,
-					response.body as ReadableStream<Uint8Array>,
-				)) {
-					const entry = chunk.entry;
-					switch (entry.case) {
-						case "backward":
-							this.onBackwardChunkedEntry(entry.value);
-							break;
-
-						case "segment":
-							this.onSegmentChunkedEntry(entry.value);
-							break;
-
-						case "previous":
-							this.onPreviousChunkedEntry(entry.value);
-							break;
-
-						case "next":
-							this.onNextChunkedEntry(entry.value);
-							break;
+				for await (const data of response.data) {
+					const chunks = await decodeChunkStream(proto.ChunkedEntrySchema,	data);
+					for(const chunk of chunks) {
+						const entry = chunk.entry;
+						switch (entry.case) {
+							case "backward":
+								this.onBackwardChunkedEntry(entry.value);
+								break;
+	
+							case "segment":
+								this.onSegmentChunkedEntry(entry.value);
+								break;
+	
+							case "previous":
+								this.onPreviousChunkedEntry(entry.value);
+								break;
+	
+							case "next":
+								this.onNextChunkedEntry(entry.value);
+								break;
+						}
 					}
+
 				}
 			} catch (ignored) {}
 		}
+		console.log("[fetchChunkedEntryStreamByPolling] end");
 	}
 
 	private onBackwardChunkedEntry = async (chunk: BackwardSegment) => {
@@ -86,13 +97,17 @@ export class MessageServerClient {
 	};
 
 	private onSegmentChunkedEntry = async (chunk: MessageSegment) => {
-		const response = await fetch(chunk.uri);
-		for await (const message of decodeChunkStream(
-			proto.ChunkedMessageSchema,
-			response.body as ReadableStream<Uint8Array>,
-		)) {
-			this.onChunkedMessage(message);
+		const response = await axios.get(chunk.uri, {
+			signal: this.abortController?.signal,
+			responseType: 'stream'
+		});
+		for await (const data of response.data) {
+			const tmps = await decodeChunkStream(proto.ChunkedMessageSchema,	data);
+			for(const message of tmps) {
+				this.onChunkedMessage(message);	
+			}
 		}
+
 	};
 
 	private onPreviousChunkedEntry = async (chunk: MessageSegment) => {

@@ -10,7 +10,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file dwango/nicolive/chat/data/Gift.proto.
  */
 export const file_dwango_nicolive_chat_data_Gift: GenFile = /*@__PURE__*/
-  fileDesc("CiRkd2FuZ28vbmljb2xpdmUvY2hhdC9kYXRhL0dpZnQucHJvdG8SGWR3YW5nby5uaWNvbGl2ZS5jaGF0LmRhdGEi0QEKBEdpZnQSDwoHaXRlbV9pZBgBIAEoCRIfChJhZHZlcnRpc2VyX3VzZXJfaWQYAiABKANIAIgBARIXCg9hZHZlcnRpc2VyX25hbWUYAyABKAkSDQoFcG9pbnQYBCABKAMSDwoHbWVzc2FnZRgFIAEoCRIRCglpdGVtX25hbWUYBiABKAkSHgoRY29udHJpYnV0aW9uX3JhbmsYByABKAVIAYgBAUIVChNfYWR2ZXJ0aXNlcl91c2VyX2lkQhQKEl9jb250cmlidXRpb25fcmFua0KyAQodY29tLmR3YW5nby5uaWNvbGl2ZS5jaGF0LmRhdGFCCUdpZnRQcm90b1ABogIERE5DRKoCGUR3YW5nby5OaWNvbGl2ZS5DaGF0LkRhdGHKAhlEd2FuZ29cTmljb2xpdmVcQ2hhdFxEYXRh4gIlRHdhbmdvXE5pY29saXZlXENoYXRcRGF0YVxHUEJNZXRhZGF0YeoCHER3YW5nbzo6Tmljb2xpdmU6OkNoYXQ6OkRhdGFiBnByb3RvMw");
+  fileDesc("CiRkd2FuZ28vbmljb2xpdmUvY2hhdC9kYXRhL0dpZnQucHJvdG8SGWR3YW5nby5uaWNvbGl2ZS5jaGF0LmRhdGEimgEKBEdpZnQSDwoHaXRlbV9pZBgBIAEoCRIaChJhZHZlcnRpc2VyX3VzZXJfaWQYAiABKAMSFwoPYWR2ZXJ0aXNlcl9uYW1lGAMgASgJEg0KBXBvaW50GAQgASgDEg8KB21lc3NhZ2UYBSABKAkSEQoJaXRlbV9uYW1lGAYgASgJEhkKEWNvbnRyaWJ1dGlvbl9yYW5rGAcgASgFQrIBCh1jb20uZHdhbmdvLm5pY29saXZlLmNoYXQuZGF0YUIJR2lmdFByb3RvUAGiAgRETkNEqgIZRHdhbmdvLk5pY29saXZlLkNoYXQuRGF0YcoCGUR3YW5nb1xOaWNvbGl2ZVxDaGF0XERhdGHiAiVEd2FuZ29cTmljb2xpdmVcQ2hhdFxEYXRhXEdQQk1ldGFkYXRh6gIcRHdhbmdvOjpOaWNvbGl2ZTo6Q2hhdDo6RGF0YWIGcHJvdG8z");
 
 /**
  * @generated from message dwango.nicolive.chat.data.Gift
@@ -22,9 +22,9 @@ export type Gift = Message<"dwango.nicolive.chat.data.Gift"> & {
   itemId: string;
 
   /**
-   * @generated from field: optional int64 advertiser_user_id = 2;
+   * @generated from field: int64 advertiser_user_id = 2;
    */
-  advertiserUserId?: bigint;
+  advertiserUserId: bigint;
 
   /**
    * @generated from field: string advertiser_name = 3;
@@ -47,9 +47,9 @@ export type Gift = Message<"dwango.nicolive.chat.data.Gift"> & {
   itemName: string;
 
   /**
-   * @generated from field: optional int32 contribution_rank = 7;
+   * @generated from field: int32 contribution_rank = 7;
    */
-  contributionRank?: number;
+  contributionRank: number;
 };
 
 /**

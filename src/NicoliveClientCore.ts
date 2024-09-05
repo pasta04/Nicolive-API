@@ -79,6 +79,7 @@ export class NicoliveClientCore extends EventEmitter<EventMap> {
 	 * 配信のWebSocketAPI及びコメントサーバーとの接続を切断する
 	 */
 	disconnect() {
+		console.log("[NicoliveClientCore] disconnect");
 		this.disconnectFromMessageServer();
 		if (this.wsApiClient) {
 			this.wsApiClient.disconnect();
@@ -86,11 +87,13 @@ export class NicoliveClientCore extends EventEmitter<EventMap> {
 	}
 
 	private setMessageServerUri(uri: string) {
+		console.log(`setMessageServerUri url=${uri}`);
 		this.messageServerUri = uri;
 		this.connectToMessageServer();
 	}
 
 	private connectToMessageServer() {
+		console.log(`connectToMessageServer`);
 		this.disconnectFromMessageServer();
 
 		const messageServerUri = this.messageServerUri;
@@ -98,9 +101,11 @@ export class NicoliveClientCore extends EventEmitter<EventMap> {
 			throw new Error("messageServerUri is not set");
 		}
 
-		const messageServerClient = new MessageServerClient(messageServerUri);
+		this.messageServerClient = new MessageServerClient(messageServerUri);
 
-		messageServerClient.onChunkedMessage = (message) => {
+		this.messageServerClient.onChunkedMessage = (message) => {
+			console.log(`[onChunkedMessage] case = ${message.payload.case}`);
+			
 			switch (message.payload.case) {
 				case "message": {
 					this.onNicoliveMessage(message.payload.value, message.meta);
@@ -118,7 +123,7 @@ export class NicoliveClientCore extends EventEmitter<EventMap> {
 			}
 		};
 
-		messageServerClient.connect();
+		this.messageServerClient.connect();
 	}
 
 	private onNicoliveMessage(
@@ -129,6 +134,8 @@ export class NicoliveClientCore extends EventEmitter<EventMap> {
 
 		switch (message.data.case) {
 			case "chat":
+				// console.log(JSON.stringify(message.data.value));
+
 				this.emit("chat", message.data.value, meta);
 				break;
 

@@ -14,14 +14,14 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file dwango/nicolive/chat/data/Marque.proto.
  */
 export const file_dwango_nicolive_chat_data_Marque: GenFile = /*@__PURE__*/
-  fileDesc("CiZkd2FuZ28vbmljb2xpdmUvY2hhdC9kYXRhL01hcnF1ZS5wcm90bxIZZHdhbmdvLm5pY29saXZlLmNoYXQuZGF0YSLmAQoGTWFycXVlEj8KB2Rpc3BsYXkYASABKAsyKS5kd2FuZ28ubmljb2xpdmUuY2hhdC5kYXRhLk1hcnF1ZS5EaXNwbGF5SACIAQEajgEKB0Rpc3BsYXkSRAoQb3BlcmF0b3JfY29tbWVudBgBIAEoCzIqLmR3YW5nby5uaWNvbGl2ZS5jaGF0LmRhdGEuT3BlcmF0b3JDb21tZW50EjAKCGR1cmF0aW9uGAMgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uSACIAQFCCwoJX2R1cmF0aW9uQgoKCF9kaXNwbGF5QrQBCh1jb20uZHdhbmdvLm5pY29saXZlLmNoYXQuZGF0YUILTWFycXVlUHJvdG9QAaICBEROQ0SqAhlEd2FuZ28uTmljb2xpdmUuQ2hhdC5EYXRhygIZRHdhbmdvXE5pY29saXZlXENoYXRcRGF0YeICJUR3YW5nb1xOaWNvbGl2ZVxDaGF0XERhdGFcR1BCTWV0YWRhdGHqAhxEd2FuZ286Ok5pY29saXZlOjpDaGF0OjpEYXRhYgZwcm90bzM", [file_google_protobuf_duration, file_dwango_nicolive_chat_data_OperatorComment]);
+  fileDesc("CiZkd2FuZ28vbmljb2xpdmUvY2hhdC9kYXRhL01hcnF1ZS5wcm90bxIZZHdhbmdvLm5pY29saXZlLmNoYXQuZGF0YSLCAQoGTWFycXVlEjoKB2Rpc3BsYXkYASABKAsyKS5kd2FuZ28ubmljb2xpdmUuY2hhdC5kYXRhLk1hcnF1ZS5EaXNwbGF5GnwKB0Rpc3BsYXkSRAoQb3BlcmF0b3JfY29tbWVudBgBIAEoCzIqLmR3YW5nby5uaWNvbGl2ZS5jaGF0LmRhdGEuT3BlcmF0b3JDb21tZW50EisKCGR1cmF0aW9uGAMgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uQrQBCh1jb20uZHdhbmdvLm5pY29saXZlLmNoYXQuZGF0YUILTWFycXVlUHJvdG9QAaICBEROQ0SqAhlEd2FuZ28uTmljb2xpdmUuQ2hhdC5EYXRhygIZRHdhbmdvXE5pY29saXZlXENoYXRcRGF0YeICJUR3YW5nb1xOaWNvbGl2ZVxDaGF0XERhdGFcR1BCTWV0YWRhdGHqAhxEd2FuZ286Ok5pY29saXZlOjpDaGF0OjpEYXRhYgZwcm90bzM", [file_google_protobuf_duration, file_dwango_nicolive_chat_data_OperatorComment]);
 
 /**
  * @generated from message dwango.nicolive.chat.data.Marque
  */
 export type Marque = Message<"dwango.nicolive.chat.data.Marque"> & {
   /**
-   * @generated from field: optional dwango.nicolive.chat.data.Marque.Display display = 1;
+   * @generated from field: dwango.nicolive.chat.data.Marque.Display display = 1;
    */
   display?: Marque_Display;
 };
@@ -43,7 +43,7 @@ export type Marque_Display = Message<"dwango.nicolive.chat.data.Marque.Display">
   operatorComment?: OperatorComment;
 
   /**
-   * @generated from field: optional google.protobuf.Duration duration = 3;
+   * @generated from field: google.protobuf.Duration duration = 3;
    */
   duration?: Duration;
 };

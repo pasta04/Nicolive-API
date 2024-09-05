@@ -10,7 +10,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file dwango/nicolive/chat/data/Enquete.proto.
  */
 export const file_dwango_nicolive_chat_data_Enquete: GenFile = /*@__PURE__*/
-  fileDesc("Cidkd2FuZ28vbmljb2xpdmUvY2hhdC9kYXRhL0VucXVldGUucHJvdG8SGWR3YW5nby5uaWNvbGl2ZS5jaGF0LmRhdGEigwIKB0VucXVldGUSEAoIcXVlc3Rpb24YASABKAkSOgoHY2hvaWNlcxgCIAMoCzIpLmR3YW5nby5uaWNvbGl2ZS5jaGF0LmRhdGEuRW5xdWV0ZS5DaG9pY2USOQoGc3RhdHVzGAMgASgOMikuZHdhbmdvLm5pY29saXZlLmNoYXQuZGF0YS5FbnF1ZXRlLlN0YXR1cxpDCgZDaG9pY2USEwoLZGVzY3JpcHRpb24YASABKAkSFgoJcGVyX21pbGxlGAMgASgFSACIAQFCDAoKX3Blcl9taWxsZSIqCgZTdGF0dXMSCgoGQ2xvc2VkEAASCAoEUG9sbBABEgoKBlJlc3VsdBACQrUBCh1jb20uZHdhbmdvLm5pY29saXZlLmNoYXQuZGF0YUIMRW5xdWV0ZVByb3RvUAGiAgRETkNEqgIZRHdhbmdvLk5pY29saXZlLkNoYXQuRGF0YcoCGUR3YW5nb1xOaWNvbGl2ZVxDaGF0XERhdGHiAiVEd2FuZ29cTmljb2xpdmVcQ2hhdFxEYXRhXEdQQk1ldGFkYXRh6gIcRHdhbmdvOjpOaWNvbGl2ZTo6Q2hhdDo6RGF0YWIGcHJvdG8z");
+  fileDesc("Cidkd2FuZ28vbmljb2xpdmUvY2hhdC9kYXRhL0VucXVldGUucHJvdG8SGWR3YW5nby5uaWNvbGl2ZS5jaGF0LmRhdGEi8AEKB0VucXVldGUSEAoIcXVlc3Rpb24YASABKAkSOgoHY2hvaWNlcxgCIAMoCzIpLmR3YW5nby5uaWNvbGl2ZS5jaGF0LmRhdGEuRW5xdWV0ZS5DaG9pY2USOQoGc3RhdHVzGAMgASgOMikuZHdhbmdvLm5pY29saXZlLmNoYXQuZGF0YS5FbnF1ZXRlLlN0YXR1cxowCgZDaG9pY2USEwoLZGVzY3JpcHRpb24YASABKAkSEQoJcGVyX21pbGxlGAMgASgFIioKBlN0YXR1cxIKCgZDbG9zZWQQABIICgRQb2xsEAESCgoGUmVzdWx0EAJCtQEKHWNvbS5kd2FuZ28ubmljb2xpdmUuY2hhdC5kYXRhQgxFbnF1ZXRlUHJvdG9QAaICBEROQ0SqAhlEd2FuZ28uTmljb2xpdmUuQ2hhdC5EYXRhygIZRHdhbmdvXE5pY29saXZlXENoYXRcRGF0YeICJUR3YW5nb1xOaWNvbGl2ZVxDaGF0XERhdGFcR1BCTWV0YWRhdGHqAhxEd2FuZ286Ok5pY29saXZlOjpDaGF0OjpEYXRhYgZwcm90bzM");
 
 /**
  * @generated from message dwango.nicolive.chat.data.Enquete
@@ -49,9 +49,9 @@ export type Enquete_Choice = Message<"dwango.nicolive.chat.data.Enquete.Choice">
   description: string;
 
   /**
-   * @generated from field: optional int32 per_mille = 3;
+   * @generated from field: int32 per_mille = 3;
    */
-  perMille?: number;
+  perMille: number;
 };
 
 /**

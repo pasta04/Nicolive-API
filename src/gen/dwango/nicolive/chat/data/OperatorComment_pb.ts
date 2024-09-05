@@ -12,7 +12,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file dwango/nicolive/chat/data/OperatorComment.proto.
  */
 export const file_dwango_nicolive_chat_data_OperatorComment: GenFile = /*@__PURE__*/
-  fileDesc("Ci9kd2FuZ28vbmljb2xpdmUvY2hhdC9kYXRhL09wZXJhdG9yQ29tbWVudC5wcm90bxIZZHdhbmdvLm5pY29saXZlLmNoYXQuZGF0YSKWAQoPT3BlcmF0b3JDb21tZW50Eg8KB2NvbnRlbnQYASABKAkSEQoEbmFtZRgCIAEoCUgAiAEBEjoKCG1vZGlmaWVyGAMgASgLMiguZHdhbmdvLm5pY29saXZlLmNoYXQuZGF0YS5DaGF0Lk1vZGlmaWVyEhEKBGxpbmsYBCABKAlIAYgBAUIHCgVfbmFtZUIHCgVfbGlua0K9AQodY29tLmR3YW5nby5uaWNvbGl2ZS5jaGF0LmRhdGFCFE9wZXJhdG9yQ29tbWVudFByb3RvUAGiAgRETkNEqgIZRHdhbmdvLk5pY29saXZlLkNoYXQuRGF0YcoCGUR3YW5nb1xOaWNvbGl2ZVxDaGF0XERhdGHiAiVEd2FuZ29cTmljb2xpdmVcQ2hhdFxEYXRhXEdQQk1ldGFkYXRh6gIcRHdhbmdvOjpOaWNvbGl2ZTo6Q2hhdDo6RGF0YWIGcHJvdG8z", [file_dwango_nicolive_chat_data_Chat]);
+  fileDesc("Ci9kd2FuZ28vbmljb2xpdmUvY2hhdC9kYXRhL09wZXJhdG9yQ29tbWVudC5wcm90bxIZZHdhbmdvLm5pY29saXZlLmNoYXQuZGF0YSJ6Cg9PcGVyYXRvckNvbW1lbnQSDwoHY29udGVudBgBIAEoCRIMCgRuYW1lGAIgASgJEjoKCG1vZGlmaWVyGAMgASgLMiguZHdhbmdvLm5pY29saXZlLmNoYXQuZGF0YS5DaGF0Lk1vZGlmaWVyEgwKBGxpbmsYBCABKAlCvQEKHWNvbS5kd2FuZ28ubmljb2xpdmUuY2hhdC5kYXRhQhRPcGVyYXRvckNvbW1lbnRQcm90b1ABogIERE5DRKoCGUR3YW5nby5OaWNvbGl2ZS5DaGF0LkRhdGHKAhlEd2FuZ29cTmljb2xpdmVcQ2hhdFxEYXRh4gIlRHdhbmdvXE5pY29saXZlXENoYXRcRGF0YVxHUEJNZXRhZGF0YeoCHER3YW5nbzo6Tmljb2xpdmU6OkNoYXQ6OkRhdGFiBnByb3RvMw", [file_dwango_nicolive_chat_data_Chat]);
 
 /**
  * @generated from message dwango.nicolive.chat.data.OperatorComment
@@ -24,9 +24,9 @@ export type OperatorComment = Message<"dwango.nicolive.chat.data.OperatorComment
   content: string;
 
   /**
-   * @generated from field: optional string name = 2;
+   * @generated from field: string name = 2;
    */
-  name?: string;
+  name: string;
 
   /**
    * @generated from field: dwango.nicolive.chat.data.Chat.Modifier modifier = 3;
@@ -34,9 +34,9 @@ export type OperatorComment = Message<"dwango.nicolive.chat.data.OperatorComment
   modifier?: Chat_Modifier;
 
   /**
-   * @generated from field: optional string link = 4;
+   * @generated from field: string link = 4;
    */
-  link?: string;
+  link: string;
 };
 
 /**

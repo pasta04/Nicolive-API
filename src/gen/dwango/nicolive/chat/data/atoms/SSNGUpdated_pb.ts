@@ -14,7 +14,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file dwango/nicolive/chat/data/atoms/SSNGUpdated.proto.
  */
 export const file_dwango_nicolive_chat_data_atoms_SSNGUpdated: GenFile = /*@__PURE__*/
-  fileDesc("CjFkd2FuZ28vbmljb2xpdmUvY2hhdC9kYXRhL2F0b21zL1NTTkdVcGRhdGVkLnByb3RvEh9kd2FuZ28ubmljb2xpdmUuY2hhdC5kYXRhLmF0b21zIrsDCgtTU05HVXBkYXRlZBJNCglvcGVyYXRpb24YASABKA4yOi5kd2FuZ28ubmljb2xpdmUuY2hhdC5kYXRhLmF0b21zLlNTTkdVcGRhdGVkLlNTTkdPcGVyYXRpb24SDwoHc3NuZ19pZBgCIAEoAxJECghvcGVyYXRvchgDIAEoCzIyLmR3YW5nby5uaWNvbGl2ZS5jaGF0LmRhdGEuYXRvbXMuTW9kZXJhdG9yVXNlckluZm8SSAoEdHlwZRgEIAEoDjI1LmR3YW5nby5uaWNvbGl2ZS5jaGF0LmRhdGEuYXRvbXMuU1NOR1VwZGF0ZWQuU1NOR1R5cGVIAIgBARITCgZzb3VyY2UYBSABKAlIAYgBARIyCgl1cGRhdGVkQXQYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wSAKIAQEiJAoNU1NOR09wZXJhdGlvbhIHCgNBREQQABIKCgZERUxFVEUQASIrCghTU05HVHlwZRIICgRVU0VSEAASCAoEV09SRBABEgsKB0NPTU1BTkQQAkIHCgVfdHlwZUIJCgdfc291cmNlQgwKCl91cGRhdGVkQXRC2QEKI2NvbS5kd2FuZ28ubmljb2xpdmUuY2hhdC5kYXRhLmF0b21zQhBTU05HVXBkYXRlZFByb3RvUAGiAgVETkNEQaoCH0R3YW5nby5OaWNvbGl2ZS5DaGF0LkRhdGEuQXRvbXPKAh9Ed2FuZ29cTmljb2xpdmVcQ2hhdFxEYXRhXEF0b21z4gIrRHdhbmdvXE5pY29saXZlXENoYXRcRGF0YVxBdG9tc1xHUEJNZXRhZGF0YeoCI0R3YW5nbzo6Tmljb2xpdmU6OkNoYXQ6OkRhdGE6OkF0b21zYgZwcm90bzM", [file_google_protobuf_timestamp, file_dwango_nicolive_chat_data_atoms_ModeratorUserInfo]);
+  fileDesc("CjFkd2FuZ28vbmljb2xpdmUvY2hhdC9kYXRhL2F0b21zL1NTTkdVcGRhdGVkLnByb3RvEh9kd2FuZ28ubmljb2xpdmUuY2hhdC5kYXRhLmF0b21zIooDCgtTU05HVXBkYXRlZBJNCglvcGVyYXRpb24YASABKA4yOi5kd2FuZ28ubmljb2xpdmUuY2hhdC5kYXRhLmF0b21zLlNTTkdVcGRhdGVkLlNTTkdPcGVyYXRpb24SDwoHc3NuZ19pZBgCIAEoAxJECghvcGVyYXRvchgDIAEoCzIyLmR3YW5nby5uaWNvbGl2ZS5jaGF0LmRhdGEuYXRvbXMuTW9kZXJhdG9yVXNlckluZm8SQwoEdHlwZRgEIAEoDjI1LmR3YW5nby5uaWNvbGl2ZS5jaGF0LmRhdGEuYXRvbXMuU1NOR1VwZGF0ZWQuU1NOR1R5cGUSDgoGc291cmNlGAUgASgJEi0KCXVwZGF0ZWRBdBgGIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAiJAoNU1NOR09wZXJhdGlvbhIHCgNBREQQABIKCgZERUxFVEUQASIrCghTU05HVHlwZRIICgRVU0VSEAASCAoEV09SRBABEgsKB0NPTU1BTkQQAkLZAQojY29tLmR3YW5nby5uaWNvbGl2ZS5jaGF0LmRhdGEuYXRvbXNCEFNTTkdVcGRhdGVkUHJvdG9QAaICBUROQ0RBqgIfRHdhbmdvLk5pY29saXZlLkNoYXQuRGF0YS5BdG9tc8oCH0R3YW5nb1xOaWNvbGl2ZVxDaGF0XERhdGFcQXRvbXPiAitEd2FuZ29cTmljb2xpdmVcQ2hhdFxEYXRhXEF0b21zXEdQQk1ldGFkYXRh6gIjRHdhbmdvOjpOaWNvbGl2ZTo6Q2hhdDo6RGF0YTo6QXRvbXNiBnByb3RvMw", [file_google_protobuf_timestamp, file_dwango_nicolive_chat_data_atoms_ModeratorUserInfo]);
 
 /**
  * @generated from message dwango.nicolive.chat.data.atoms.SSNGUpdated
@@ -36,17 +36,17 @@ export type SSNGUpdated = Message<"dwango.nicolive.chat.data.atoms.SSNGUpdated">
   operator?: ModeratorUserInfo;
 
   /**
-   * @generated from field: optional dwango.nicolive.chat.data.atoms.SSNGUpdated.SSNGType type = 4;
+   * @generated from field: dwango.nicolive.chat.data.atoms.SSNGUpdated.SSNGType type = 4;
    */
-  type?: SSNGUpdated_SSNGType;
+  type: SSNGUpdated_SSNGType;
 
   /**
-   * @generated from field: optional string source = 5;
+   * @generated from field: string source = 5;
    */
-  source?: string;
+  source: string;
 
   /**
-   * @generated from field: optional google.protobuf.Timestamp updatedAt = 6;
+   * @generated from field: google.protobuf.Timestamp updatedAt = 6;
    */
   updatedAt?: Timestamp;
 };

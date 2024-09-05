@@ -10,7 +10,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file dwango/nicolive/chat/data/Nicoad.proto.
  */
 export const file_dwango_nicolive_chat_data_Nicoad: GenFile = /*@__PURE__*/
-  fileDesc("CiZkd2FuZ28vbmljb2xpdmUvY2hhdC9kYXRhL05pY29hZC5wcm90bxIZZHdhbmdvLm5pY29saXZlLmNoYXQuZGF0YSKHBAoGTmljb2FkEjIKAnYwGAEgASgLMiQuZHdhbmdvLm5pY29saXZlLmNoYXQuZGF0YS5OaWNvYWQuVjBIABIyCgJ2MRgCIAEoCzIkLmR3YW5nby5uaWNvbGl2ZS5jaGF0LmRhdGEuTmljb2FkLlYxSAAa2QIKAlYwEjsKBmxhdGVzdBgBIAEoCzIrLmR3YW5nby5uaWNvbGl2ZS5jaGF0LmRhdGEuTmljb2FkLlYwLkxhdGVzdBI9CgdyYW5raW5nGAIgAygLMiwuZHdhbmdvLm5pY29saXZlLmNoYXQuZGF0YS5OaWNvYWQuVjAuUmFua2luZxITCgt0b3RhbF9wb2ludBgDIAEoBRpNCgZMYXRlc3QSEgoKYWR2ZXJ0aXNlchgBIAEoCRINCgVwb2ludBgCIAEoBRIUCgdtZXNzYWdlGAMgASgJSACIAQFCCgoIX21lc3NhZ2UacwoHUmFua2luZxISCgphZHZlcnRpc2VyGAEgASgJEgwKBHJhbmsYAiABKAUSFAoHbWVzc2FnZRgDIAEoCUgAiAEBEhYKCXVzZXJfcmFuaxgEIAEoBUgBiAEBQgoKCF9tZXNzYWdlQgwKCl91c2VyX3JhbmsaLQoCVjESFgoOdG90YWxfYWRfcG9pbnQYASABKAUSDwoHbWVzc2FnZRgCIAEoCUIKCgh2ZXJzaW9uc0K0AQodY29tLmR3YW5nby5uaWNvbGl2ZS5jaGF0LmRhdGFCC05pY29hZFByb3RvUAGiAgRETkNEqgIZRHdhbmdvLk5pY29saXZlLkNoYXQuRGF0YcoCGUR3YW5nb1xOaWNvbGl2ZVxDaGF0XERhdGHiAiVEd2FuZ29cTmljb2xpdmVcQ2hhdFxEYXRhXEdQQk1ldGFkYXRh6gIcRHdhbmdvOjpOaWNvbGl2ZTo6Q2hhdDo6RGF0YWIGcHJvdG8z");
+  fileDesc("CiZkd2FuZ28vbmljb2xpdmUvY2hhdC9kYXRhL05pY29hZC5wcm90bxIZZHdhbmdvLm5pY29saXZlLmNoYXQuZGF0YSLSAwoGTmljb2FkEjIKAnYwGAEgASgLMiQuZHdhbmdvLm5pY29saXZlLmNoYXQuZGF0YS5OaWNvYWQuVjBIABIyCgJ2MRgCIAEoCzIkLmR3YW5nby5uaWNvbGl2ZS5jaGF0LmRhdGEuTmljb2FkLlYxSAAapAIKAlYwEjsKBmxhdGVzdBgBIAEoCzIrLmR3YW5nby5uaWNvbGl2ZS5jaGF0LmRhdGEuTmljb2FkLlYwLkxhdGVzdBI9CgdyYW5raW5nGAIgAygLMiwuZHdhbmdvLm5pY29saXZlLmNoYXQuZGF0YS5OaWNvYWQuVjAuUmFua2luZxITCgt0b3RhbF9wb2ludBgDIAEoBRo8CgZMYXRlc3QSEgoKYWR2ZXJ0aXNlchgBIAEoCRINCgVwb2ludBgCIAEoBRIPCgdtZXNzYWdlGAMgASgJGk8KB1JhbmtpbmcSEgoKYWR2ZXJ0aXNlchgBIAEoCRIMCgRyYW5rGAIgASgFEg8KB21lc3NhZ2UYAyABKAkSEQoJdXNlcl9yYW5rGAQgASgFGi0KAlYxEhYKDnRvdGFsX2FkX3BvaW50GAEgASgFEg8KB21lc3NhZ2UYAiABKAlCCgoIdmVyc2lvbnNCtAEKHWNvbS5kd2FuZ28ubmljb2xpdmUuY2hhdC5kYXRhQgtOaWNvYWRQcm90b1ABogIERE5DRKoCGUR3YW5nby5OaWNvbGl2ZS5DaGF0LkRhdGHKAhlEd2FuZ29cTmljb2xpdmVcQ2hhdFxEYXRh4gIlRHdhbmdvXE5pY29saXZlXENoYXRcRGF0YVxHUEJNZXRhZGF0YeoCHER3YW5nbzo6Tmljb2xpdmU6OkNoYXQ6OkRhdGFiBnByb3RvMw");
 
 /**
  * @generated from message dwango.nicolive.chat.data.Nicoad
@@ -83,9 +83,9 @@ export type Nicoad_V0_Latest = Message<"dwango.nicolive.chat.data.Nicoad.V0.Late
   point: number;
 
   /**
-   * @generated from field: optional string message = 3;
+   * @generated from field: string message = 3;
    */
-  message?: string;
+  message: string;
 };
 
 /**
@@ -110,14 +110,14 @@ export type Nicoad_V0_Ranking = Message<"dwango.nicolive.chat.data.Nicoad.V0.Ran
   rank: number;
 
   /**
-   * @generated from field: optional string message = 3;
+   * @generated from field: string message = 3;
    */
-  message?: string;
+  message: string;
 
   /**
-   * @generated from field: optional int32 user_rank = 4;
+   * @generated from field: int32 user_rank = 4;
    */
-  userRank?: number;
+  userRank: number;
 };
 
 /**

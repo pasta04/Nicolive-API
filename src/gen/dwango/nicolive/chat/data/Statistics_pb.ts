@@ -10,31 +10,31 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file dwango/nicolive/chat/data/Statistics.proto.
  */
 export const file_dwango_nicolive_chat_data_Statistics: GenFile = /*@__PURE__*/
-  fileDesc("Cipkd2FuZ28vbmljb2xpdmUvY2hhdC9kYXRhL1N0YXRpc3RpY3MucHJvdG8SGWR3YW5nby5uaWNvbGl2ZS5jaGF0LmRhdGEiogEKClN0YXRpc3RpY3MSFAoHdmlld2VycxgBIAEoA0gAiAEBEhUKCGNvbW1lbnRzGAIgASgDSAGIAQESFgoJYWRfcG9pbnRzGAMgASgDSAKIAQESGAoLZ2lmdF9wb2ludHMYBCABKANIA4gBAUIKCghfdmlld2Vyc0ILCglfY29tbWVudHNCDAoKX2FkX3BvaW50c0IOCgxfZ2lmdF9wb2ludHNCuAEKHWNvbS5kd2FuZ28ubmljb2xpdmUuY2hhdC5kYXRhQg9TdGF0aXN0aWNzUHJvdG9QAaICBEROQ0SqAhlEd2FuZ28uTmljb2xpdmUuQ2hhdC5EYXRhygIZRHdhbmdvXE5pY29saXZlXENoYXRcRGF0YeICJUR3YW5nb1xOaWNvbGl2ZVxDaGF0XERhdGFcR1BCTWV0YWRhdGHqAhxEd2FuZ286Ok5pY29saXZlOjpDaGF0OjpEYXRhYgZwcm90bzM");
+  fileDesc("Cipkd2FuZ28vbmljb2xpdmUvY2hhdC9kYXRhL1N0YXRpc3RpY3MucHJvdG8SGWR3YW5nby5uaWNvbGl2ZS5jaGF0LmRhdGEiVwoKU3RhdGlzdGljcxIPCgd2aWV3ZXJzGAEgASgDEhAKCGNvbW1lbnRzGAIgASgDEhEKCWFkX3BvaW50cxgDIAEoAxITCgtnaWZ0X3BvaW50cxgEIAEoA0K4AQodY29tLmR3YW5nby5uaWNvbGl2ZS5jaGF0LmRhdGFCD1N0YXRpc3RpY3NQcm90b1ABogIERE5DRKoCGUR3YW5nby5OaWNvbGl2ZS5DaGF0LkRhdGHKAhlEd2FuZ29cTmljb2xpdmVcQ2hhdFxEYXRh4gIlRHdhbmdvXE5pY29saXZlXENoYXRcRGF0YVxHUEJNZXRhZGF0YeoCHER3YW5nbzo6Tmljb2xpdmU6OkNoYXQ6OkRhdGFiBnByb3RvMw");
 
 /**
  * @generated from message dwango.nicolive.chat.data.Statistics
  */
 export type Statistics = Message<"dwango.nicolive.chat.data.Statistics"> & {
   /**
-   * @generated from field: optional int64 viewers = 1;
+   * @generated from field: int64 viewers = 1;
    */
-  viewers?: bigint;
+  viewers: bigint;
 
   /**
-   * @generated from field: optional int64 comments = 2;
+   * @generated from field: int64 comments = 2;
    */
-  comments?: bigint;
+  comments: bigint;
 
   /**
-   * @generated from field: optional int64 ad_points = 3;
+   * @generated from field: int64 ad_points = 3;
    */
-  adPoints?: bigint;
+  adPoints: bigint;
 
   /**
-   * @generated from field: optional int64 gift_points = 4;
+   * @generated from field: int64 gift_points = 4;
    */
-  giftPoints?: bigint;
+  giftPoints: bigint;
 };
 
 /**
