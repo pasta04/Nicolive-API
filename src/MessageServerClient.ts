@@ -18,9 +18,10 @@ export class MessageServerClient {
 
 	/**
 	 * BackwardSegment (= ストリーム開始前の過去メッセージ) の取得上限件数。
+	 * chat 以外も含む生メッセージ単位で末尾 N 件に絞る。
 	 * 0 以下なら過去メッセージは取得しない。
 	 */
-	public pastMessagesLimit = 100;
+	public pastMessagesLimit = 200;
 
 	constructor(private readonly messageServerUrl: string) {}
 

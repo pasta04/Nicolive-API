@@ -11,8 +11,10 @@ export interface NicoliveClientConfig {
 	liveId: string;
 
 	/**
-	 * 接続時に取得する過去コメント (= ストリーム先頭の BackwardSegment) の上限件数。
-	 * 0 以下にすると過去コメントは取得しない。デフォルト 100。
+	 * 接続時に取得する過去メッセージ (= ストリーム先頭の BackwardSegment) の上限件数。
+	 * 件数は chat 以外 (state / gift など) も含む「生メッセージ」単位で数えるため、
+	 * 実際に pastChats へ渡る chat の件数はこれより少なくなる。
+	 * 0 以下にすると過去メッセージは取得しない。デフォルト 200。
 	 */
 	pastMessagesLimit?: number;
 }
@@ -20,7 +22,7 @@ export interface NicoliveClientConfig {
 export namespace NicoliveClientConfig {
 	export const Default: Required<NicoliveClientConfig> = {
 		liveId: "",
-		pastMessagesLimit: 100,
+		pastMessagesLimit: 200,
 	};
 }
 
