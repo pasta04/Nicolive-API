@@ -5,6 +5,8 @@ export class WSAPIClient {
 	private readonly liveId: string;
 	private pingerId: number | null = null;
 	private websocketClient: Websocket | null = null;
+	// disconnect() による意図的な切断中は close/error で throw しない
+	private isDisconnecting = false;
 
 	constructor(
 		liveId: string,
@@ -17,6 +19,7 @@ export class WSAPIClient {
 		if (this.websocketClient !== null) {
 			this.disconnect();
 		}
+		this.isDisconnecting = false;
 
 		const liveHTML = await (
 			await fetch(`https://live.nicovideo.jp/watch/lv${this.liveId}`)
@@ -27,6 +30,7 @@ export class WSAPIClient {
 		const websocketClient = this.platformAPI
 			.createWebsocket(websocketURL)
 			.on("error", (err) => {
+				if (this.isDisconnecting) return;
 				throw err;
 			})
 			.on("open", () => {
@@ -47,6 +51,7 @@ export class WSAPIClient {
 				);
 			})
 			.on("close", () => {
+				if (this.isDisconnecting) return;
 				throw new Error("[WSAPIClient] disconnected");
 			})
 			.on("message", this.onRawMessage);
@@ -55,6 +60,7 @@ export class WSAPIClient {
 	}
 
 	public disconnect() {
+		this.isDisconnecting = true;
 		this.stopPinger();
 
 		if (this.websocketClient === null) return;
