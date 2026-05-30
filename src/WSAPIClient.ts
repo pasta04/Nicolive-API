@@ -1,4 +1,3 @@
-import axios from 'axios';
 import type { Websocket } from "./Websocket";
 import type { PlatformAPI } from "./platform/PlatformAPI";
 
@@ -15,19 +14,15 @@ export class WSAPIClient {
 	}
 
 	public async connect() {
-		console.log("[WSAPIClient] connect");
 		if (this.websocketClient !== null) {
 			this.disconnect();
 		}
 
-		const url = `https://live.nicovideo.jp/watch/lv${this.liveId}`;
-		console.log(url);
-		// console.log(Undici);
-
-		// const liveHTML = await (await fetch(url)).text();
-		const liveHTML = (await axios.get(url)).data as string;
-		const websocketURL = await this.platformAPI.extractWSAPIURLFromHTML(liveHTML);
-		console.log(`[WSAPIClient] websocketURL=${websocketURL}`);
+		const liveHTML = await (
+			await fetch(`https://live.nicovideo.jp/watch/lv${this.liveId}`)
+		).text();
+		const websocketURL =
+			await this.platformAPI.extractWSAPIURLFromHTML(liveHTML);
 
 		const websocketClient = this.platformAPI
 			.createWebsocket(websocketURL)
@@ -35,8 +30,6 @@ export class WSAPIClient {
 				throw err;
 			})
 			.on("open", () => {
-				console.log("[WSAPIClient] WebSocket open");
-
 				websocketClient.send(
 					JSON.stringify({
 						type: "startWatching",

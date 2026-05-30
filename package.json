@@ -1,6 +1,6 @@
 {
 	"name": "@kikurage/nicolive-api",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"description": "ニコニコ生放送のAPIを利用するための非公式APIクライアント",
 	"author": {
 		"name": "kikurage",
@@ -10,9 +10,10 @@
 		"type": "git",
 		"url": "https://github.com/Kiikurage/Nicolive-API"
 	},
-	"main": "./index.js",
+	"main": "./build/node.js",
+	"types": "./build/node.d.ts",
 	"scripts": {
-		"unacast": "npx tsup",
+		"prepare": "npm run build:ts",
 		"build": "npm run build:proto && npm run build:ts",
 		"build:proto": "buf generate",
 		"build:ts": "tsc",
@@ -27,18 +28,13 @@
 	},
 	"dependencies": {
 		"@bufbuild/protobuf": "^2.0.0",
-		"axios": "^1.7.7",
-		"cheerio": "1.0.0-rc.12",
-		"node-abort-controller": "^3.1.1",
-		"tsup": "^8.2.4",
-		"undici": "^5.28.4",
+		"cheerio": "^1.0.0-rc.12",
 		"ws": "^8.18.0"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.8.3",
 		"@bufbuild/buf": "^1.35.1",
 		"@bufbuild/protoc-gen-es": "^2.0.0",
-		"@swc/core": "^1.7.23",
 		"@types/ws": "^8.5.12",
 		"rimraf": "^4.1.2",
 		"typescript": "^4.9.5"

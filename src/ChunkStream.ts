@@ -1,7 +1,5 @@
 import { fromBinary } from "@bufbuild/protobuf";
-import type { DescMessage } from "@bufbuild/protobuf/dist/cjs/descriptors";
-import type { MessageShape } from "@bufbuild/protobuf/dist/cjs/types";
-import { AxiosResponse } from 'axios';
+import type { DescMessage, MessageShape } from "@bufbuild/protobuf";
 
 export interface ReadableStream<T> {
 	getReader(): ReadableStreamReader<T>;
@@ -14,14 +12,25 @@ export interface ReadableStreamReader<T> {
 	}>;
 }
 
-export async function decodeChunkStream<T extends DescMessage>(
+export async function* decodeChunkStream<T extends DescMessage>(
 	schema: T,
-	response: AxiosResponse["data"],
-): Promise<MessageShape<T>[]> {
+	readable: ReadableStream<Uint8Array>,
+): AsyncGenerator<MessageShape<T>> {
 	const decoder = new ChunkDecoder(schema);
 
-	decoder.push(response);
-	return decoder.read();
+	const reader = readable.getReader();
+
+	while (true) {
+		const { done, value } = await reader.read();
+		if (done) {
+			break;
+		}
+
+		decoder.push(value);
+		for (const chunk of decoder.read()) {
+			yield chunk;
+		}
+	}
 }
 
 export function decodeChunks<T extends DescMessage>(
