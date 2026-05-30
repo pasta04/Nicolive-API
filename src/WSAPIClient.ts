@@ -1,4 +1,3 @@
-import axios from 'axios';
 import type { Websocket } from "./Websocket";
 import type { PlatformAPI } from "./platform/PlatformAPI";
 
@@ -6,6 +5,8 @@ export class WSAPIClient {
 	private readonly liveId: string;
 	private pingerId: number | null = null;
 	private websocketClient: Websocket | null = null;
+	// disconnect() による意図的な切断中は close/error で throw しない
+	private isDisconnecting = false;
 
 	constructor(
 		liveId: string,
@@ -15,28 +16,24 @@ export class WSAPIClient {
 	}
 
 	public async connect() {
-		console.log("[WSAPIClient] connect");
 		if (this.websocketClient !== null) {
 			this.disconnect();
 		}
+		this.isDisconnecting = false;
 
-		const url = `https://live.nicovideo.jp/watch/lv${this.liveId}`;
-		console.log(url);
-		// console.log(Undici);
-
-		// const liveHTML = await (await fetch(url)).text();
-		const liveHTML = (await axios.get(url)).data as string;
-		const websocketURL = await this.platformAPI.extractWSAPIURLFromHTML(liveHTML);
-		console.log(`[WSAPIClient] websocketURL=${websocketURL}`);
+		const liveHTML = await (
+			await fetch(`https://live.nicovideo.jp/watch/lv${this.liveId}`)
+		).text();
+		const websocketURL =
+			await this.platformAPI.extractWSAPIURLFromHTML(liveHTML);
 
 		const websocketClient = this.platformAPI
 			.createWebsocket(websocketURL)
 			.on("error", (err) => {
+				if (this.isDisconnecting) return;
 				throw err;
 			})
 			.on("open", () => {
-				console.log("[WSAPIClient] WebSocket open");
-
 				websocketClient.send(
 					JSON.stringify({
 						type: "startWatching",
@@ -54,6 +51,7 @@ export class WSAPIClient {
 				);
 			})
 			.on("close", () => {
+				if (this.isDisconnecting) return;
 				throw new Error("[WSAPIClient] disconnected");
 			})
 			.on("message", this.onRawMessage);
@@ -62,6 +60,7 @@ export class WSAPIClient {
 	}
 
 	public disconnect() {
+		this.isDisconnecting = true;
 		this.stopPinger();
 
 		if (this.websocketClient === null) return;

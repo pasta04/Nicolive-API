@@ -9,11 +9,20 @@ export interface NicoliveClientConfig {
 	 *  配信ID(`"lvXXXXXXXX"`)
 	 */
 	liveId: string;
+
+	/**
+	 * 接続時に取得する過去メッセージ (= ストリーム先頭の BackwardSegment) の上限件数。
+	 * 件数は chat 以外 (state / gift など) も含む「生メッセージ」単位で数えるため、
+	 * 実際に pastChats へ渡る chat の件数はこれより少なくなる。
+	 * 0 以下にすると過去メッセージは取得しない。デフォルト 200。
+	 */
+	pastMessagesLimit?: number;
 }
 
 export namespace NicoliveClientConfig {
 	export const Default: Required<NicoliveClientConfig> = {
 		liveId: "",
+		pastMessagesLimit: 200,
 	};
 }
 
@@ -22,6 +31,11 @@ type EventMap = {
 	changeState: [message: proto.NicoliveState, meta?: proto.ChunkedMessage_Meta];
 
 	chat: [message: proto.Chat, meta?: proto.ChunkedMessage_Meta];
+	/**
+	 * 接続時に取得した過去コメント (BackwardSegment) の chat メッセージ一覧。
+	 * pastMessagesLimit に制限した分だけ、一度だけ発火する。
+	 */
+	pastChats: [messages: proto.Chat[]];
 	simpleNotification: [
 		message: proto.SimpleNotification,
 		meta?: proto.ChunkedMessage_Meta,
@@ -79,7 +93,6 @@ export class NicoliveClientCore extends EventEmitter<EventMap> {
 	 * 配信のWebSocketAPI及びコメントサーバーとの接続を切断する
 	 */
 	disconnect() {
-		console.log("[NicoliveClientCore] disconnect");
 		this.disconnectFromMessageServer();
 		if (this.wsApiClient) {
 			this.wsApiClient.disconnect();
@@ -87,13 +100,11 @@ export class NicoliveClientCore extends EventEmitter<EventMap> {
 	}
 
 	private setMessageServerUri(uri: string) {
-		console.log(`setMessageServerUri url=${uri}`);
 		this.messageServerUri = uri;
 		this.connectToMessageServer();
 	}
 
 	private connectToMessageServer() {
-		console.log(`connectToMessageServer`);
 		this.disconnectFromMessageServer();
 
 		const messageServerUri = this.messageServerUri;
@@ -101,11 +112,10 @@ export class NicoliveClientCore extends EventEmitter<EventMap> {
 			throw new Error("messageServerUri is not set");
 		}
 
-		this.messageServerClient = new MessageServerClient(messageServerUri);
+		const messageServerClient = new MessageServerClient(messageServerUri);
+		messageServerClient.pastMessagesLimit = this.config.pastMessagesLimit;
 
-		this.messageServerClient.onChunkedMessage = (message) => {
-			console.log(`[onChunkedMessage] case = ${message.payload.case}`);
-			
+		messageServerClient.onChunkedMessage = (message) => {
 			switch (message.payload.case) {
 				case "message": {
 					this.onNicoliveMessage(message.payload.value, message.meta);
@@ -123,7 +133,20 @@ export class NicoliveClientCore extends EventEmitter<EventMap> {
 			}
 		};
 
-		this.messageServerClient.connect();
+		messageServerClient.onBackwardChunkedMessages = (messages) => {
+			// chat メッセージだけ抜き出して 1 度だけ emit する
+			const chats: proto.Chat[] = [];
+			for (const m of messages) {
+				if (m.payload.case !== "message") continue;
+				const data = m.payload.value.data;
+				if (data.case === "chat") chats.push(data.value);
+			}
+			if (chats.length > 0) this.emit("pastChats", chats);
+		};
+
+		messageServerClient.connect();
+		// upstream バグ修正: ここで保持しないと disconnectFromMessageServer が効かない
+		this.messageServerClient = messageServerClient;
 	}
 
 	private onNicoliveMessage(
@@ -134,8 +157,6 @@ export class NicoliveClientCore extends EventEmitter<EventMap> {
 
 		switch (message.data.case) {
 			case "chat":
-				// console.log(JSON.stringify(message.data.value));
-
 				this.emit("chat", message.data.value, meta);
 				break;
 
