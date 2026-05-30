@@ -12,6 +12,9 @@
 	},
 	"main": "./build/node.js",
 	"types": "./build/node.d.ts",
+	"files": [
+		"build"
+	],
 	"scripts": {
 		"prepare": "npm run build:ts",
 		"build": "npm run build:proto && npm run build:ts",
